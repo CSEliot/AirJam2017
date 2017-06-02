@@ -44,6 +44,7 @@ public class PlaneControls : MonoBehaviour {
     private bool textFadedOut;
 
     public Text TextToFade;
+    public GameObject EndGameText;
 
     private bool canFade;
     public string FriendCode;
@@ -94,12 +95,15 @@ public class PlaneControls : MonoBehaviour {
             closing = true;
         }
 
-        if (!textFadedIn && Time.time >= TextFadeInTime)
+        if (canFade && !textFadedIn && Time.time >= TextFadeInTime)
             fadeTextIn = true;
 
-        if (!textFadedOut && Time.time >= TextFadeOutTime)
+        if (canFade && !textFadedOut && Time.time >= TextFadeOutTime)
             fadeTextOut = true;
 
+
+        if (Time.time > (TotalPlayTime + ClosingSpeed))
+            EndGameText.SetActive(true);
 
         if (fadeTextIn)
         {
