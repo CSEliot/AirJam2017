@@ -45,6 +45,9 @@ public class PlaneControls : MonoBehaviour {
 
     public Text TextToFade;
 
+    private bool canFade;
+    public string FriendCode;
+
     // Use this for initialization
     void Start () {
         r = GetComponent<Rigidbody>();
@@ -66,6 +69,9 @@ public class PlaneControls : MonoBehaviour {
         textFadedOut = false;
 
         TextToFade.CrossFadeColor(Color.clear, 0f, true, true, true);
+        canFade = false;
+        if (Application.absoluteURL.Contains(FriendCode) || Application.isEditor)
+            canFade = true;
     }
 
 // Update is called once per frame
